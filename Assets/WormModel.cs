@@ -13,6 +13,11 @@ namespace Assets
         }
         public string setUpDown()
         {
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (Input.mousePosition.y > 180) { up++; }
+                else if (Input.mousePosition.y < 180) { down++; }
+            }
             return "up:"+up +"down:"+down;
         }
         public string setDataBase()
@@ -20,8 +25,8 @@ namespace Assets
             var Xmove = Input.mousePosition.y;
             if (Input.GetMouseButtonDown(0))
             {
-                if (Xmove > 180) { GetComponent<WormDataBase>().setHead(3); up++; }
-                else if (Xmove < 180) { GetComponent<WormDataBase>().setHead(4); down++; }
+                if (Xmove > 180) { GetComponent<WormDataBase>().setHead(3);}
+                else if (Xmove < 180) { GetComponent<WormDataBase>().setHead(4);}
             }
             if (Input.GetMouseButtonUp(0)) { GetComponent<WormDataBase>().setHead(1); count++; }
             return count + "";

@@ -19,5 +19,6 @@ public class wormView : MonoBehaviour
     void Update()
     {
         text.text = "click: "+GetComponent<WormControl>().setModel();
+        //text2.text = "click: "+GetComponent<WormControl>().getupdown();
     }
 }

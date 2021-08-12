@@ -28,9 +28,9 @@ public class Road : MonoBehaviour
         GameObject worm4 = (GameObject)MonoBehaviour.Instantiate(Offcorms[pcolor].gameObject, transform.position+ new Vector3(posX+1.5f, -2.5f, 0), Quaternion.identity);
         GameObject worm5 = (GameObject)MonoBehaviour.Instantiate(Offcorms[pcolor].gameObject, transform.position- new Vector3(posX+1.5f, posY, 0), Quaternion.identity);
         GameObject worm6 = (GameObject)MonoBehaviour.Instantiate(Offcorms[pcolor].gameObject, transform.position- new Vector3(posX-1.5f, posY, 0), Quaternion.identity);
-        //GameObject worm7 = (GameObject)MonoBehaviour.Instantiate(newcorm.gameObject, transform.position + new Vector3(-posX - 1.5f, -2.5f, 0), Quaternion.identity);
-        //GameObject worm8 = (GameObject)MonoBehaviour.Instantiate(newcorm.gameObject, transform.position - new Vector3(-posX, posY, 0), Quaternion.identity);
-        //GameObject worm9 = (GameObject)MonoBehaviour.Instantiate(newcorm.gameObject, transform.position + new Vector3(-posX + 1.5f, -2.5f, 0), Quaternion.identity);
+        GameObject worm7 = (GameObject)MonoBehaviour.Instantiate(newcorm.gameObject, transform.position + new Vector3(-posX - 1.5f, -2.5f, 0), Quaternion.identity);
+        GameObject worm8 = (GameObject)MonoBehaviour.Instantiate(newcorm.gameObject, transform.position - new Vector3(-posX, posY, 0), Quaternion.identity);
+        GameObject worm9 = (GameObject)MonoBehaviour.Instantiate(newcorm.gameObject, transform.position + new Vector3(-posX + 1.5f, -2.5f, 0), Quaternion.identity);
         leftpart.GetComponent<Renderer>().material = mts[pcolor];
         rightpart.GetComponent<Renderer>().material = mts[pcolor];
 
@@ -43,9 +43,9 @@ public class Road : MonoBehaviour
         GameObject worm4 = (GameObject)MonoBehaviour.Instantiate(Offcorms[pcolor].gameObject, transform.position + new Vector3(posX + 1.5f, -2.5f, 0), Quaternion.identity);
         GameObject worm5 = (GameObject)MonoBehaviour.Instantiate(Offcorms[pcolor].gameObject, transform.position - new Vector3(posX + 1.5f, posY, 0), Quaternion.identity);
         GameObject worm6 = (GameObject)MonoBehaviour.Instantiate(Offcorms[pcolor].gameObject, transform.position - new Vector3(posX - 1.5f, posY, 0), Quaternion.identity);
-        //GameObject worm7 = (GameObject)MonoBehaviour.Instantiate(newcorm.gameObject, transform.position + new Vector3(-posX - 1.5f, -2.5f, 0), Quaternion.identity);
-        //GameObject worm8 = (GameObject)MonoBehaviour.Instantiate(newcorm.gameObject, transform.position - new Vector3(-posX, posY, 0), Quaternion.identity);
-        //GameObject worm9 = (GameObject)MonoBehaviour.Instantiate(newcorm.gameObject, transform.position + new Vector3(-posX + 1.5f, -2.5f, 0), Quaternion.identity);
+        GameObject worm7 = (GameObject)MonoBehaviour.Instantiate(newcorm.gameObject, transform.position + new Vector3(-posX - 1.5f, -2.5f, 0), Quaternion.identity);
+        GameObject worm8 = (GameObject)MonoBehaviour.Instantiate(newcorm.gameObject, transform.position - new Vector3(-posX, posY, 0), Quaternion.identity);
+        GameObject worm9 = (GameObject)MonoBehaviour.Instantiate(newcorm.gameObject, transform.position + new Vector3(-posX + 1.5f, -2.5f, 0), Quaternion.identity);
     }
 
     // Update is called once per frame
