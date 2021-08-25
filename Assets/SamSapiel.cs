@@ -16,7 +16,7 @@ public class SamSapiel : MonoBehaviour
     }
     public void loadScene(string load)
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(load);
+        //UnityEngine.SceneManagement.SceneManager.LoadScene(load);
     }
     // Start is called before the first frame update
     void Start()
@@ -29,6 +29,7 @@ public class SamSapiel : MonoBehaviour
     {
         GameObject worm = (GameObject)MonoBehaviour.Instantiate(goStart, transform.position, Quaternion.identity);
         wormis = worm;
+        FindObjectOfType<Road>().newSpawn();
         //worm.transform.SetParent(transform);
     }
 

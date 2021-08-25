@@ -27,7 +27,7 @@ public class WirmCircle : MonoBehaviour
                 || MMDebug.Raycast3DBoolean(transform.position, Vector3.down, 0.45f, DeadLayer, Color.red, true)
                 || MMDebug.Raycast3DBoolean(transform.position, Vector3.up, 0.45f, DeadLayer, Color.red, true))
             {
-                wormCircle.nazad();
+                //wormCircle.nazad();
             }
         }
     }
@@ -37,7 +37,7 @@ public class WirmCircle : MonoBehaviour
         {
             if (col.gameObject.tag == "razor")
             {
-                wormCircle.nazad();
+                //wormCircle.nazad();
             }
         }
     }

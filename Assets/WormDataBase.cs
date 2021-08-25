@@ -120,20 +120,25 @@ public class WormDataBase : MonoBehaviour
     }
     float xmove = 0f;
     [SerializeField]int currIndex;
+    List<GameObject> fireInd = new List<GameObject>();
+    private void fireRestart()
+    {
+        fireInd.Clear();
+    }
     // Update is called once per frame
     void Update()
     {
         rubyText.text = rubys.ToString();
-        if (transform.position.x > vspos[currIndex] - 9.2f)
-        {
-            if (transform.position.x >= vspos[currIndex] + 12f&& vspos.Count-1!=currIndex) { print(currIndex); currIndex += 1; }
-            if(vspos.Count - 1 <= currIndex) { load3sec = true; 
-                foreach(var pworm in FindObjectsOfType<Road>()) { pworm.newStart(); }
-                StartCoroutine(GetLoseOrFinish("You Win Finish!!!"));
-                transform.position = loadposition;
-                UnityEngine.SceneManagement.SceneManager.LoadScene("offlinescene4");
-            }
-        }
+        //if (transform.position.x > vspos[currIndex] - 9.2f)
+        //{
+        //if (transform.position.x >= vspos[currIndex] + 12f&& vspos.Count-1!=currIndex) { print(currIndex); currIndex += 1; }
+        //if(vspos.Count - 1 <= currIndex) { load3sec = true; 
+        //    foreach(var pworm in FindObjectsOfType<Road>()) { pworm.newStart(); }
+        //    StartCoroutine(GetLoseOrFinish("You Win Finish!!!"));
+        //    transform.position = loadposition;
+        //    UnityEngine.SceneManagement.SceneManager.LoadScene("offlinescene4");
+        //}
+        //}
 
         if (rbs >= 4)
         {
@@ -141,34 +146,35 @@ public class WormDataBase : MonoBehaviour
             //StartCoroutine(GetEnumeratorIK());
             //rbs = 0;
         }
-        
-        mmats2[0].GetComponent<SpriteRenderer>().sprite = mmats[GameObject.Find(roads[currIndex]).GetComponent<Road>().mycolor()];
-        mmats2[1].GetComponent<SpriteRenderer>().sprite = mmats[GameObject.Find(roads[currIndex]).GetComponent<Road>().mycolor()];
-        mmats2[2].GetComponent<SpriteRenderer>().sprite = mmats[GameObject.Find(roads[currIndex]).GetComponent<Road>().mycolor()];
-        mmats2[3].GetComponent<SpriteRenderer>().sprite = mmats[GameObject.Find(roads[currIndex]).GetComponent<Road>().mycolor()];
+        if (fireInd.Count <= 3)
+        {
+            if (Input.GetKey(KeyCode.Space))
+            {
+                GameObject fp = Instantiate(fire.gameObject, transform.position, Quaternion.identity);
+                fireInd.Add(fp);
+                fp.GetComponent<FirePoint>().my = true;
+            }
+        }
+        else { Invoke("fireRestart", 1); }
         if (MMDebug.Raycast3DBoolean(transform.position, Vector3.right, 0.45f, rybiLayer, Color.red, true))
         {
             //rubys += 1;
         }
-        var Xmove = Input.mousePosition.y;// Input.GetAxis("Horizontal");
+        var Xmove = Input.mousePosition.y;
         var Ymove = Input.GetAxis("Vertical");
-        if (MMDebug.Raycast3DBoolean(transform.position, Vector3.up, 0.45f, DeadLayer, Color.red, true))
-        { newHead = 4; }
-        if (MMDebug.Raycast3DBoolean(transform.position, Vector3.down, 0.45f, DeadLayer, Color.red, true))
+        if (transform.position.y < -4.55f)
+        {
+            //newHead = 4; 
+            transform.position = new Vector3(transform.position.x, 11, transform.position.z);
+        }
+        if (transform.position.y > 12.77f)
         {
             //newHead = 3;
-            
-        }
-        if (transform.position.y < -1.55f) {
-            //newHead = 4; 
-            transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-        }
-        if (transform.position.y > 7.77f) { 
-            //newHead = 3;
-            transform.position = new Vector3(transform.position.x, 5, transform.position.z);
+            transform.position = new Vector3(transform.position.x, -4, transform.position.z);
         }
         if (Input.GetMouseButtonDown(0))
         {
+
         }
 
         if (Input.GetMouseButtonUp(0)) { }
@@ -193,7 +199,7 @@ public class WormDataBase : MonoBehaviour
             mDirection = Vector2.zero;
         }
         if (load5sec) { mDirection = Vector2.right * dirspeed; }
-        Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+        //Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
         //goMat.GetComponent<Renderer>().material = GetMaterial;
         scoreText.text = score.ToString();
     }
@@ -212,30 +218,37 @@ public class WormDataBase : MonoBehaviour
         }
     }
     bool load3sec=false;
+    public bool besmertie() { return load3sec; }
     IEnumerator GetLoseOrFinish(string ttext)
     {
         while (load3sec)
         {
             GameObject.Find("Canvas").transform.Find("Text (2)").GetComponent<UnityEngine.UI.Text>().text = ttext;
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(3.0f);
             GameObject.Find("Canvas").transform.Find("Text (2)").GetComponent<UnityEngine.UI.Text>().text = "";
             currIndex = 0;
             load3sec = false;
         }
     }
     int rbs=0;
+    int deadcount = 0;
     void OnCollisionEnter(Collision col)
     {
-        if (load5sec == false)
+        if (load3sec == false)
         {
-            if (col.gameObject.tag == "corm")
+            deadcount++;
+            if (col.gameObject.tag == "corm"||col.gameObject.tag == "fire"||col.gameObject.tag == "enem")
             {
-                rbs = 0; addmove = 1;
+                rbs = 0; rubys = 0f; score = 0;
+                load3sec = true;
+                FindObjectOfType<Road>().minuslive();
+                StartCoroutine(GetLoseOrFinish("You Dead"));
+                transform.position = loadposition;
             }
             if (col.gameObject.tag == "yad")
             {
                 rbs = 0; rubys = 0f;score = 0;
-                load3sec = true; 
+                load3sec = true; FindObjectOfType<Road>().minuslive();
                 StartCoroutine(GetLoseOrFinish("You Dead"));
                 transform.position = loadposition;
                
@@ -243,7 +256,7 @@ public class WormDataBase : MonoBehaviour
             if (col.gameObject.tag == "razor")
             {
                 rbs = 0; rubys = 0f; score = 0;
-                load3sec = true;
+                load3sec = true; FindObjectOfType<Road>().minuslive();
                 StartCoroutine(GetLoseOrFinish("You Dead"));
                 transform.position = loadposition;
                 
@@ -253,25 +266,25 @@ public class WormDataBase : MonoBehaviour
                 rbs += 1; rubys += 1f;
             }
         }
-        else if (load5sec == true)
-        {
-            rbs = 0;
-            if (col.gameObject.tag == "corm")
-            {
-                addmove = 1;
-            }
-            if (col.gameObject.tag == "yad")
-            {
-                score += 1;
-            }
-            if (col.gameObject.tag == "razor")
-            {
+        //else if (load5sec == true)
+        //{
+        //    rbs = 0;
+        //    if (col.gameObject.tag == "corm")
+        //    {
+        //        addmove = 1;
+        //    }
+        //    if (col.gameObject.tag == "yad")
+        //    {
+        //        score += 1;
+        //    }
+        //    if (col.gameObject.tag == "razor")
+        //    {
                 
-            }
-            if (col.gameObject.tag == "rub")
-            {
-                rubys += 1f;
-            }
-        }
+        //    }
+        //    if (col.gameObject.tag == "rub")
+        //    {
+        //        rubys += 1f;
+        //    }
+        //}
     }
 }

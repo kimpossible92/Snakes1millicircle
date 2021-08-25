@@ -104,12 +104,14 @@
     <Compile Include="Assets\Scripts\Networking\VoiceChat.cs" />
     <Compile Include="Assets\Game Assets\Scripts\Position.cs" />
     <Compile Include="Assets\Scripts\IDamageObject.cs" />
+    <Compile Include="Assets\firest.cs" />
     <Compile Include="Assets\Scripts\TileContent.cs" />
     <Compile Include="Assets\GameServer.cs" />
     <Compile Include="Assets\Scripts\Networking\FriendAvatar.cs" />
     <Compile Include="Assets\DebugConnection.cs" />
     <Compile Include="Assets\Corm.cs" />
     <Compile Include="Assets\Online.cs" />
+    <Compile Include="Assets\Resources\ast.cs" />
     <Compile Include="Assets\Scripts\Networking\LobbyChat.cs" />
     <Compile Include="Assets\MMDebug.cs" />
     <Compile Include="Assets\LobbyHook.cs" />
@@ -725,27 +727,23 @@
     <Reference Include="System.Xml.Serialization">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.13f1\Editor\Data\NetStandard\compat\2.0.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Timeline">
+      <HintPath>Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.multiplayer-hlapi.Runtime">
+      <HintPath>Library\ScriptAssemblies\com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
       <Project>{0F2286AF-69DC-0E0C-A27F-43822CA0BD9C}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.Timeline.csproj">
-      <Project>{D2F74EC7-AB3F-02F4-1C8D-C30FB89234C7}</Project>
-      <Name>Unity.Timeline</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.TextMeshPro.csproj">
-      <Project>{C776FD75-E567-F2F5-4994-64457DA3EF24}</Project>
-      <Name>Unity.TextMeshPro</Name>
-    </ProjectReference>
-    <ProjectReference Include="UnityEngine.UI.csproj">
-      <Project>{9886949C-FF07-479E-0F4B-174E43AD7BBD}</Project>
-      <Name>UnityEngine.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="com.unity.multiplayer-hlapi.Runtime.csproj">
-      <Project>{824FEA89-CE53-294B-60A4-7B16B91D9A98}</Project>
-      <Name>com.unity.multiplayer-hlapi.Runtime</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

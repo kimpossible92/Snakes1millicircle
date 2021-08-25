@@ -23,12 +23,13 @@ namespace Assets
         public string setDataBase()
         {
             var Xmove = Input.mousePosition.y;
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (Xmove > 180) { GetComponent<WormDataBase>().setHead(3);}
-                else if (Xmove < 180) { GetComponent<WormDataBase>().setHead(4);}
+            if (Input.GetKey(KeyCode.A)) { GetComponent<WormDataBase>().setHead(2); }
+            else if (Input.GetKey(KeyCode.D)) { GetComponent<WormDataBase>().setHead(1); }
+            else if (Input.GetKey(KeyCode.W)) { GetComponent<WormDataBase>().setHead(3); }
+            else if (Input.GetKey(KeyCode.S)) { GetComponent<WormDataBase>().setHead(4); }
+            else {
+                GetComponent<WormDataBase>().setHead(0);
             }
-            if (Input.GetMouseButtonUp(0)) { GetComponent<WormDataBase>().setHead(1); count++; }
             return count + "";
         }
     }
